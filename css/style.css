@@ -31,6 +31,12 @@ body{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300 !important;
 }
+.login-header{
+    color: #3e495e;
+}
+.signup-header{
+    color: white;
+}
 .upper-fold{
     width: 0; 
     height: 0; 
@@ -55,6 +61,7 @@ body{
 }
 .line-divisor{
     border: 1px solid #49abfe;
+    width: 40px;
 }
 .red-star{
     color: red;
@@ -64,9 +71,9 @@ body{
     font-weight: 400;
     color: #8495b7;
 }
-.email-img, .password-img{
-    max-width: 38px;
-    padding-left: 100%;
+.email-img{
+    width: 16px;
+    height: 14px;
 }
 input {
     border: 0;
@@ -108,7 +115,7 @@ input {
     color: white;
 }
 .inactive-section-abstract{
-    color: white;
+    color:white;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400 !important;
     line-height: 2;
@@ -118,4 +125,10 @@ input {
 }
 .separating-lines{
     margin-top: 315px;
+}
+.main-content{
+    margin-top: 355px;
+}
+.email-input-row{
+    margin-top: 390px;
 }
