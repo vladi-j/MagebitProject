@@ -106,11 +106,16 @@ input {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300 !important;
     color: white;
-    padding-top: 95px;
 }
 .inactive-section-abstract{
     color: white;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400 !important;
     line-height: 2;
+}
+.headings{
+    margin-top: 265px;
+}
+.separating-lines{
+    margin-top: 315px;
 }
