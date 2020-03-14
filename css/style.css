@@ -1,0 +1,116 @@
+body{
+    background-image: url(../img/background.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.page-footer{
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    font-weight: 700;
+    color: #c9d1e0;
+}
+.authentication-background{
+    height: 420px;
+    background-color: #0f1a2f;
+    opacity: 90.2%;
+    margin-top: 190px;
+}
+
+.login-header, .signup-header{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300 !important;
+}
+.upper-fold{
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;    
+    border-right: 10px solid #82d1f1;
+    margin-top: 170px;
+    z-index: -1;
+}
+.lower-fold{
+    width: 0; 
+    height: 0; 
+    border-bottom: 20px solid transparent;    
+    border-right: 10px solid #81d1f1;
+    margin-top: 610px;
+    z-index: -1;
+}
+.login-box{
+    height: 460px;
+    background-color: white;
+    margin-top: 170px;
+    padding-top: 95px;
+}
+.line-divisor{
+    border: 1px solid #49abfe;
+}
+.red-star{
+    color: red;
+}
+.email-header, .password-header{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    color: #8495b7;
+}
+.email-img, .password-img{
+    max-width: 38px;
+    padding-left: 100%;
+}
+input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid #cbd2df;
+    width: 90%;
+}    
+.password-section{
+    margin-top: 25px;
+}
+.button-section{
+    margin-top: 30px;
+}
+.login-button{
+    background-color: #f89a35 !important;
+    color: white !important;
+    border-radius: 50px !important;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700 !important;
+}
+.btn-lg{
+    height: 50px;
+    width: 150px;
+    font-size: 1rem !important;
+}
+.forgot-link{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    color: #8495b7;
+    margin-top: 15px;
+}
+.inactive-signup-section{
+    margin-top: 170px;
+}
+.signup-header{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300 !important;
+    color: white;
+    padding-top: 95px;
+}
+.inactive-section-abstract{
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400 !important;
+    line-height: 2;
+}
