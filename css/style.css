@@ -62,6 +62,7 @@ body{
 .line-divisor{
     border: 1px solid #49abfe;
     width: 40px;
+    margin: 25px 0 25px 0;
 }
 .red-star{
     color: red;
@@ -81,9 +82,15 @@ input {
     background: transparent;
     border-bottom: 1px solid #cbd2df;
     width: 90%;
-}    
+} 
+.email-header label, .password-header label{
+    margin-bottom: 0px !important;
+} 
+.email-input, .password-input {
+    line-height: 5px;
+}  
 .password-section{
-    margin-top: 25px;
+    margin-top: 15px;
 }
 .button-section{
     margin-top: 30px;
@@ -98,7 +105,8 @@ input {
 .btn-lg{
     height: 50px;
     width: 150px;
-    font-size: 1rem !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 2px;
 }
 .forgot-link{
     font-family: 'Source Sans Pro', sans-serif;
@@ -107,7 +115,7 @@ input {
     margin-top: 15px;
 }
 .inactive-signup-section{
-    margin-top: 170px;
+    margin-top: 265px;
 }
 .signup-header{
     font-family: 'Source Sans Pro', sans-serif;
@@ -131,4 +139,12 @@ input {
 }
 .email-input-row{
     margin-top: 390px;
+}
+.signup-button{
+    background-color: transparent !important;
+    color: white !important;
+    border-radius: 50px !important;
+    border: 2px solid #49abfe !important;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700 !important;
 }
