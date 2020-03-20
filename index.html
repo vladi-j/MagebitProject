@@ -18,73 +18,87 @@
             <!-- Background -->
             <div class="authentication-background col-lg-8 mx-auto"></div>
             <!-- Inactive SIGNUP part -->
-            <div class="inactive-signup-section position-absolute col-lg-4 offset-lg-2">
-                <div class="ml-lg-5">
-                    <h2 class="signup-header">Don't have an account?</h2>
-                </div>
-                <div class="ml-lg-5">                    
-                    <hr class="line-divisor">
-                </div>
-                <div class="ml-lg-5">
-                    <p class="inactive-section-abstract">
-                        Lorem ipsum dolor sit amet,
-                        <br>
-                         consectetur adipiscing elit, sed do
-                         <br>
-                         eiusmod tempor incididunt ut labore et
-                         <br>
-                          dolore magna aliqua.
-                    </p>
-                </div>
-                <div class="ml-lg-5">
-                    <button type="submit" class="btn btn-lg signup-button" onclick="signUpClick()">SIGN UP</button>
-                </div>
-            </div>    
+            <div class="container position-absolute col-lg-4 offset-lg-2">
+                <div class="inactive-signup-section">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <h2 class="signup-header">Don't have an account?</h2>
+                        </div>
+                    </div>
+                    <div class="offset-lg-2 pl-2">                    
+                        <hr class="line-divisor">
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <p class="inactive-section-abstract">
+                                Lorem ipsum dolor sit amet,
+                                <br>
+                                 consectetur adipiscing elit, sed do
+                                 <br>
+                                 eiusmod tempor incididunt ut labore et
+                                 <br>
+                                  dolore magna aliqua.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="offset-lg-2 pl-2">
+                        <button type="submit" class="btn btn-lg signup-button" onclick="signUpClick()">SIGN UP</button>
+                    </div>
+                </div>  
+            </div>  
             <!-- Active LOGIN part -->
             <div id="active-login-section" class="container position-absolute col-lg-4 offset-lg-6"><!--Change to col-lg-4 offset-lg-2-->
                 <div id="login-box" class="ml-lg-n3"> <!--Change to ml-lg-2-->
-                    <div class="row">
-                        <div class="col-lg-4 offset-lg-2">
-                            <h2 class="login-header ml-lg-n1">Login</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3">
+                            <h2 class="login-header">Login</h2>
                         </div> 
-                        <div class="col-lg-6">
-                            <img class="ml-lg-5" src="img/logo.jpg" alt="MAGEBIT">
+                        <div class="col-lg-2 offset-lg-3">
+                            <img class="float-right" src="img/logo.jpg" alt="MAGEBIT">
                         </div> 
                     </div>
-                    <div class="offset-lg-2">                    
+                    <div class="offset-lg-2 pl-2">                    
                         <hr class="line-divisor">
                     </div>
-                    <div class="row">
-                        <div class="col-lg-3 offset-lg-2 email-header">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 email-header">
                             <label for="email-input">Email <span class="red-star">*</span></label>
                         </div>
                         <div class="col-lg-2 offset-lg-3">
-                            <img class="email-img" src="img/email-img.png" alt="E-mail">
+                            <img class="float-right email-img" src="img/email-img.png" alt="E-mail">
                         </div> 
                     </div>
-                    <div class="col-lg-8 offset-lg-2">
-                        <input type="email" class="email-input ml-lg-n2">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <input type="email" class="email-input">
+                        </div>
                     </div>
-                    <div class="row password-section">
-                        <div class="col-lg-4 offset-lg-2 password-header">
+                    <div class="row justify-content-center password-section">
+                        <div class="col-lg-4 password-header">
                             <label for="password-input">Password <span class="red-star">*</span></label>
                         </div>
-                        <div class="col-lg-1 offset-lg-2">
-                            <img class="password-img" src="img/password-img.png" alt="E-mail">
+                        <div class="col-lg-2 offset-lg-2">
+                            <img class="float-right password-img" src="img/password-img.png" alt="E-mail">
                         </div> 
                     </div>
-                    <div class="col-lg-8 offset-lg-2">
-                        <input type="password" class="password-input ml-lg-n2">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <input type="password" class="password-input">
+                        </div>                        
                     </div>
-                    <div class="row button-section">
-                        <div class="col-lg-4 offset-lg-2">
+                    <div class="row justify-content-center button-section">
+                        <div class="col-lg-4">
                             <button type="submit" class="btn btn-lg login-button">LOGIN</button>
                         </div>
-                        <div class="col-lg-3 offset-lg-1 forgot-link">
+                        <div class="col-lg-2 offset-lg-2 forgot-link">
                             <h7>Forgot?</h7>
                         </div>
                     </div>    
                 </div>
+            </div>
+            <!-- Inactive Login section -->
+            <div id="inactive-login-section" class="position-absolute col-lg-4 offset-lg-6">
+
             </div>
             <div id="upper-fold" class="position-absolute col-lg-1 offset-lg-5"></div> <!--Change to col-lg-2 ml-lg-3-->
             <div id="lower-fold" class="position-absolute col-lg-1 offset-lg-5"></div> <!--Change to col-lg-2 ml-lg-3-->
