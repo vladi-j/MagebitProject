@@ -21,6 +21,7 @@ body{
     color: #c9d1e0;
 }
 .authentication-background{
+    z-index: 0;
     height: 420px;
     background-color: #0f1a2f;
     opacity: 90.2%;
@@ -50,6 +51,12 @@ body{
     border-right: 10px solid #81d1f1;
     margin-top: 610px;
     z-index: -1;
+}
+#active-signup-section{
+    display: none;
+}
+#active-login-section{
+    z-index: 10;
 }
 #login-box{
     height: 460px;
@@ -112,13 +119,11 @@ input {
     color: #8495b7;
     margin-top: 15px;
 }
-#inactive-login-section{
-    z-index: -10;
-}
-.inactive-signup-section{
+.inactive-section{
+    z-index: 1;
     margin-top: 265px;
 }
-.signup-header{
+.inactive-header{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300 !important;
     color: white;
@@ -141,7 +146,7 @@ input {
 .email-input-row{
     margin-top: 390px;
 }
-.signup-button{
+.inactive-button{
     background-color: transparent !important;
     color: white !important;
     border-radius: 50px !important;
