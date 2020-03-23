@@ -32,11 +32,8 @@ body{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300 !important;
 }
-.login-header{
+.login-header, .signup-header{
     color: #3e495e;
-}
-.signup-header{
-    color: white;
 }
 #upper-fold{
     height: 0; 
@@ -54,6 +51,7 @@ body{
 }
 #active-signup-section{
     display: none;
+    z-index: 10;
 }
 #active-login-section{
     z-index: 10;
@@ -64,6 +62,12 @@ body{
     margin-top: 170px;
     padding-top: 95px;
 }
+#signup-box{
+    height: 460px;
+    background-color: white;
+    margin-top: 170px;
+    padding-top: 65px;
+}
 .line-divisor{
     border: 1px solid #49abfe;
     width: 40px;
@@ -72,7 +76,7 @@ body{
 .red-star{
     color: red;
 }
-.email-header, .password-header{
+.name-header, .email-header, .password-header{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400;
     color: #8495b7;
@@ -88,17 +92,15 @@ input {
     border-bottom: 1px solid #cbd2df;
     width: 100%;
 } 
-.email-header label, .password-header label{
+.email-header label, .password-header label, .name-header label{
     margin-bottom: 0px !important;
 } 
-.email-input, .password-input {
+.email-input, .password-input, .name-input {
     line-height: 5px;
-}  
-.password-section{
-    margin-top: 15px;
+    margin-bottom: 15px
 }
 .button-section{
-    margin-top: 30px;
+    margin-top: 15px;
 }
 .login-button{
     background-color: #f89a35 !important;
