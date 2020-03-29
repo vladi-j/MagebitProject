@@ -49,24 +49,21 @@ body{
     margin-top: 610px;
     z-index: -1;
 }
-#active-signup-section{
-    display: none;
-    z-index: 10;
-}
 #active-login-section{
     z-index: 10;
 }
-#login-box{
+#active-box{
     height: 460px;
     background-color: white;
     margin-top: 170px;
+}
+#login-box{
     padding-top: 95px;
+    z-index: 1;
 }
 #signup-box{
-    height: 460px;
-    background-color: white;
-    margin-top: 170px;
     padding-top: 65px;
+    z-index: -1;
 }
 .line-divisor{
     border: 1px solid #49abfe;
@@ -95,14 +92,14 @@ input {
 .email-header label, .password-header label, .name-header label{
     margin-bottom: 0px !important;
 } 
-.email-input, .password-input, .name-input {
+.login-email-input, .signup-email-input, .login-password-input, .signup-password-input, .name-input {
     line-height: 5px;
     margin-bottom: 15px
 }
 .button-section{
     margin-top: 15px;
 }
-.login-button{
+.login-button, .signup-button{
     background-color: #f89a35 !important;
     color: white !important;
     border-radius: 50px !important;
@@ -156,12 +153,22 @@ input {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 700 !important;
 }
-.offset-lg-2{
+.offset-lg-2, .col-lg-2, .col-lg-1, .offset-lg-5, .ml-lg-3, .offset-lg-6, .ml-lg-0, .ml-lg-n3{
     transition: all 800ms ease;
 }
-.col-lg-2{
-    transition: all 800ms ease;
+.show {
+    opacity: 1;
+    transition: opacity 700ms;
 }
-.ml-lg-3{
-    transition: all 800ms ease;
+.hide {
+    opacity: 0;
+    transition: opacity 700ms;
+}
+.error{
+    display: inline;
+}
+.error p{
+    margin-bottom: 0 !important;
+    display: inline-block;
+    color: red;
 }
