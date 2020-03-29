@@ -66,6 +66,8 @@ require_once('core/init.php');
                             <hr class="line-divisor">
                         </div>
                         <form id="login-form" action="" method="post">
+                            <!--Display errors-->
+                            <?php include('Controller/loginErrors.php'); ?>
                             <div class="row justify-content-center">
                                 <div class="col-lg-3 email-header">
                                     <label for="login-email-input">Email <span class="red-star">*</span></label>
@@ -76,7 +78,7 @@ require_once('core/init.php');
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input type="email" name="login-email" class="login-email-input" value="">
+                                    <input type="email" name="login-email" class="login-email-input" value="<?php echo Validation::$loginEmail; ?>">
                                 </div>
                             </div>
                             <div class="row justify-content-center password-section">
@@ -94,7 +96,7 @@ require_once('core/init.php');
                             </div>
                             <div class="row justify-content-center button-section">
                                 <div class="col-lg-4">
-                                    <input type="submit" class="btn btn-lg login-button" value="LOGIN">
+                                    <button type="submit" class="btn btn-lg login-button" name="login-form">LOGIN</button>
                                 </div>
                                 <div class="col-lg-2 offset-lg-2 forgot-link">
                                     <h7>Forgot?</h7>
@@ -117,7 +119,7 @@ require_once('core/init.php');
                         </div>
                         <form id="signup-form" action="index.php" method="post">
                             <!--Display errors-->
-                            <?php include('Controller/errors.php'); ?>
+                            <?php include('Controller/signUpErrors.php'); ?>
                             <div class="row justify-content-center">
                                 <div class="col-lg-3 name-header">
                                     <label for="name-input">Name <span class="red-star">*</span></label>
@@ -128,7 +130,7 @@ require_once('core/init.php');
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input type="text" name="signup-name" class="name-input" value="<?php echo Validation::$name; ?>">
+                                    <input type="text" name="signup-name" class="name-input" value="<?php echo Validation::$signUpName; ?>">
                                 </div>                        
                             </div>
                             <div class="row justify-content-center">
@@ -141,7 +143,7 @@ require_once('core/init.php');
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input type="email" name="signup-email" class="signup-email-input" value="<?php echo Validation::$email; ?>">
+                                    <input type="email" name="signup-email" class="signup-email-input" value="<?php echo Validation::$signUpEmail; ?>">
                                 </div>
                             </div>
                             <div class="row justify-content-center password-section">
@@ -154,7 +156,7 @@ require_once('core/init.php');
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input type="password" name="signup-password" class="signup-password-input" value="<?php echo Validation::$password; ?>">
+                                    <input type="password" name="signup-password" class="signup-password-input" value="<?php echo Validation::$signUpPassword; ?>">
                                 </div>                        
                             </div>                        
                             <div class="row justify-content-center button-section">
