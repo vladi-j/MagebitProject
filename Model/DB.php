@@ -10,7 +10,6 @@ class DB{
        $this->db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
         if(mysqli_connect_errno()) {
-            echo "Error: Could not connect to the database.";
             exit;
         }
     }
@@ -39,38 +38,18 @@ class DB{
                 Validation::addError("signUp", "Email already exists.");
             }
         } else if(count(Validation::$signUpErrors) === 0){
-            echo "Success";
             self::register();
             return true;
         }
     }
 
     public function register(){
-        $this->_password = md5($this->_password);//encrypt the password before saving in the database
-
-        $query = $this->db->prepare("INSERT INTO users (name, email, password) VALUES(?, ?, ?)");
-        $query->bind_param("sss", $this->_name, $this->_email, $this->_password);
-        $query->execute();
-        $_SESSION['name'] = $this->_name;
-        $_SESSION['success'] = "You are now logged in";
-        $query->close();
+        $registration = new Register();
+        $registration->registering($this->db, $this->_name, $this->_email, $this->_password);
     }
 
     public function login(){
-        if(count(Validation::$loginErrors) === 0){
-            $this->_password = md5($this->_password);
-            $query = $this->db->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
-            $query->bind_param("ss", $this->_email, $this->_password);
-            $query->execute();
-            $user = mysqli_fetch_assoc( $query->get_result());
-            $query->close();
-            if($user){
-                $_SESSION['name'] = $this->_name;
-                $_SESSION['success'] = "You are now logged in";
-            }else{
-                Validation::addError("login", "Incorrect credentials!");
-            }
-        }
+        $loggingIn = new Login();
+        $loggingIn->tryLogIn($this->db, $this->_email, $this->_password);
     }
 }
-?>

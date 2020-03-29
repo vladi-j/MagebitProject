@@ -1,6 +1,5 @@
 <?php
 
-
 class Validation{
     public static  $signUpName = "",
             $signUpEmail    = "",
@@ -67,7 +66,6 @@ class Validation{
     }
 
     public function validateForm(){
-            
         // receive all input values from the form and add errors
         if (isset($_POST['sign-up'])) {
             self::registrationForm();
@@ -100,5 +98,3 @@ $validation = new Validation();
 if(!empty($_POST)){
     $validation->validateForm();
 };
-
-?>
