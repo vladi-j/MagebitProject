@@ -1,14 +1,8 @@
 <?php
+ob_start();
 require_once('core/init.php');
-  if (!isset($_SESSION['email'])) {
-  	$_SESSION['msg'] = "You must log in first";
-      header('location: ss.php');
-  }
-  if (isset($_GET['logout'])) {
-  	session_destroy();
-  	unset($_SESSION['username']);
-  	header("location: auth.php");
-  }
+new Session();
+ob_end_flush();
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,20 +18,19 @@ require_once('core/init.php');
 <div class="content">
   	<!-- notification message -->
   	<?php if (isset($_SESSION['success'])) : ?>
-      <div class="error success" >
+      <div class="success" >
       	<h3>
           <?php 
-          	echo $_SESSION['success']; 
-          	unset($_SESSION['success']);
+          	echo $_SESSION['success'];
           ?>
       	</h3>
       </div>
   	<?php endif ?>
 
     <!-- logged in user information -->
-    <?php  if (isset($_SESSION['email'])) : ?>
-    	<p>Welcome <strong><?php echo $_SESSION['email']; ?></strong></p>
-    	<p> <a href="index.php?logout='1'" style="color: red;">logout</a> </p>
+    <?php  if (isset($_SESSION['loggedin'])) : ?>
+    	<p>Welcome <strong><?php echo $_SESSION['name']; ?></strong></p>
+    	<p> <a href="index.php?logout=true" style="color: red;">logout</a> </p>
     <?php endif ?>
 </div>
 		

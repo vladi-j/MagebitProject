@@ -9,6 +9,12 @@ class Validation{
             $signUpErrors   = array(),
             $loginErrors = array();
 
+    function __construct(){
+        if(!empty($_POST)){
+            Validation::validateForm();
+        };
+    }
+
     //Check if form is filled correctly
     public function registrationForm(){
         self::$signUpName = $_POST['signup-name'];
@@ -91,10 +97,4 @@ class Validation{
             return self::$loginErrors;
         }
     }
-};
-
-$validation = new Validation();
-
-if(!empty($_POST)){
-    $validation->validateForm();
 };

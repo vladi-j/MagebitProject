@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 spl_autoload_register(function($class){
     if(file_exists('./Controller/'.$class.'.php')){
         require_once './Controller/'.$class.'.php';

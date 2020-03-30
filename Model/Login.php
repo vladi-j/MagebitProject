@@ -9,7 +9,9 @@ class Login{
             $user = mysqli_fetch_assoc( $query->get_result());
             $query->close();
             if($user){
+                $_SESSION['name'] = $user['name'];
                 $_SESSION['email'] = $email;
+                $_SESSION['loggedin'] = true;
                 $_SESSION['success'] = "You are now logged in";
                 echo "<script type='text/javascript'>  window.location='index.php'; </script>";
             }else{

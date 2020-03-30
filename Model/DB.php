@@ -24,18 +24,19 @@ class DB{
     public function checkIfAvailable(){
         // first check the database to make sure 
         // a user does not already exist with the same username and/or email
-        $user_check_query = $this->db->prepare("SELECT * FROM users WHERE name = ? OR email = ? LIMIT 1");
+        $user_check_query = $this->db->prepare("SELECT * FROM users WHERE name = ? OR email = ?");
         $user_check_query->bind_param("ss", $this->_name, $this->_email);
         $user_check_query->execute();
-        $user = mysqli_fetch_assoc( $user_check_query->get_result());
+        $users =  $user_check_query->get_result()->fetch_assoc();
         $user_check_query->close();
-        if ($user) { // if user exists
-            if ($user['name'] === $this->_name) {
-                Validation::addError("signUp", "Name already exists.");
-            }
-
-            if ($user['email'] === $this->_email) {
-                Validation::addError("signUp", "Email already exists.");
+        if (count( $users) > 0) { // if user exists
+            while($user = $users) {
+                if (strtolower($user['name']) === strtolower($this->_name)) {
+                    Validation::addError("signUp", "Name already exists.");
+                };
+                if ($user['email'] === $this->_email) {
+                    Validation::addError("signUp", "Email already exists.");
+                };
             }
         } else if(count(Validation::$signUpErrors) === 0){
             self::register();

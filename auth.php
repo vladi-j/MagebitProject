@@ -1,6 +1,7 @@
 <?php
 ob_start();
 require_once('core/init.php');
+new Validation();
 ob_end_flush();
 ?>
 <!DOCTYPE html>
