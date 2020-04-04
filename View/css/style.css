@@ -99,12 +99,15 @@ input {
 .button-section{
     margin-top: 15px;
 }
-.login-button, .signup-button{
+.login-button, .signup-button, .profile-button{
     background-color: #f89a35 !important;
     color: white !important;
     border-radius: 50px !important;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 700 !important;
+}
+.profile-button{
+    margin-top: 15px;
 }
 .btn-lg{
     height: 50px;
@@ -171,4 +174,24 @@ input {
     margin-bottom: 0 !important;
     display: inline-block;
     color: red;
+}
+.greetingsPanel{
+    margin: 50px 0px 50px 0px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300 !important;
+}
+.jumbotron{
+    width: 50%;
+    padding: 20px 20px 20px 20px !important;
+}
+.attributeName{
+    margin-top: 10px;
+}
+.profile-button{
+    margin-top: 20px;
+}
+#logout{
+    text-decoration: none;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300 !important;
 }

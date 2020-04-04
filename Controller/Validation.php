@@ -6,12 +6,13 @@ class Validation{
             $signUpPassword = "",
             $loginEmail = "",
             $loginPassword = "",
+            $userID = "",
             $signUpErrors   = array(),
             $loginErrors = array();
 
     function __construct(){
         if(!empty($_POST)){
-            Validation::validateForm();
+            self::validateForm();
         };
     }
 

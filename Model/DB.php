@@ -29,7 +29,7 @@ class DB{
         $user_check_query->execute();
         $users =  $user_check_query->get_result()->fetch_assoc();
         $user_check_query->close();
-        if (count( $users) > 0) { // if user exists
+        if (isset($users)) { // if user exists
             while($user = $users) {
                 if (strtolower($user['name']) === strtolower($this->_name)) {
                     Validation::addError("signUp", "Name already exists.");

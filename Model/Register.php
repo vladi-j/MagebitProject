@@ -11,7 +11,9 @@ class Register{
         $_SESSION['loggedin'] = true;
         $_SESSION['success'] = "You are now logged in";
         header('location: index.php');
-        $query->close();
+        $thread = $db->thread_id;
+        $db->kill($thread);
+        $db->close();
     }
     
 }

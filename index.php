@@ -6,33 +6,35 @@ ob_end_flush();
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Home</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-
-<div class="header">
-	<h2>Home Page</h2>
-</div>
-<div class="content">
-  	<!-- notification message -->
-  	<?php if (isset($_SESSION['success'])) : ?>
-      <div class="success" >
-      	<h3>
-          <?php 
-          	echo $_SESSION['success'];
-          ?>
-      	</h3>
-      </div>
-  	<?php endif ?>
-
-    <!-- logged in user information -->
-    <?php  if (isset($_SESSION['loggedin'])) : ?>
-    	<p>Welcome <strong><?php echo $_SESSION['name']; ?></strong></p>
-    	<p> <a href="index.php?logout=true" style="color: red;">logout</a> </p>
-    <?php endif ?>
-</div>
-		
-</body>
+	<head>
+		<title>User profile</title>
+		<link rel="stylesheet" href="View/css/style.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row justify-content-center greetingsPanel">
+				<div class="col-lg-2">					
+					<!-- logged in user information -->
+					<?php  if (isset($_SESSION['loggedin'])) : ?>
+						<h5>Welcome <strong><?php echo $_SESSION['name']; ?></strong></h5>
+					<?php endif ?>
+				</div>
+				<div class="col-lg-2 offset-lg-3">
+					<h2 id="profileHeader">User Profile</h2>
+				</div>
+				<div class="col-lg-1 offset-lg-4">
+					<h5 ><strong><a href="index.php?logout=true" id="logout">Logout</a> </strong></h5>
+				</div>
+			</div>	
+			<div class="row justify-content-center">
+				<div class="jumbotron attributes">
+					<?php $userAttributes = new Attributes();
+						$userAttributes->requestAttributes($_SESSION['email']);
+					?>
+				</div>
+			</div>			
+		</div>				
+	</body>
 </html>
