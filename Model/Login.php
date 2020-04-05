@@ -2,6 +2,7 @@
 class Login{
     public function tryLogIn($db, $email, $password){
         if(count(Validation::$loginErrors) === 0){
+            echo $email,$password;
             $password = md5($password);
             $query = $db->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
             $query->bind_param("ss", $email, $password);

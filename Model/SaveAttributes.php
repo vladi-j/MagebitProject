@@ -25,7 +25,6 @@ class SaveAttributes{
         $entry_query_result = mysqli_query($this->db, $entry_query);
         if($entry_query_result){
             if($entry_query_result->num_rows > 0){
-                echo "Exist";
                 $entriesExist = true;
             }
         }
@@ -39,22 +38,34 @@ class SaveAttributes{
         $attributeArray = $_POST["attributeValue"];           
         $userEmail = strval($_SESSION['email']);
 
+        //Deleting attribute id from array received
+        array_shift($attributes);
+        array_shift($attributes);
+
         //Check if enries already exist for this user
         if(!$entriesExist){
-            echo "Doesn't exist ". $userEmail;
-            //Insert user email if one hasn't any entries
-            $sql = "INSERT INTO `attributes` (`user_email`) VALUES ('".$userEmail."')";
-            var_dump($sql);
+            $attributeName = "";
+            $attributeValue = "";
+            //Making string for query
+            $attributeName .= "`user_email`,";
+            $attributeValue .= "'".$userEmail."',";
+            foreach($attributeArray as $key=>$value){
+                $attributeName .= "`".$attributes[$key]['COLUMN_NAME']."`,";
+                $attributeValue .= "'".$this->db->real_escape_string($value)."',";
+            }
+
+            //Removing last comma
+            $attributeName = substr($attributeName, 0, -1);
+            $attributeValue = substr($attributeValue, 0, -1);
+            $sql = "INSERT INTO `attributes` (".$attributeName.") VALUES (".$attributeValue.")";
             mysqli_query($this->db, $sql);
         }
 
-        //Deleting attribute id and email from array received
-        array_shift($attributes);
-        array_shift($attributes);
+
 
         foreach($attributeArray as $key=>$value){
             $attributeName = $attributes[$key]['COLUMN_NAME'];
-            $attributeValue = $value;
+            $attributeValue = $this->db->real_escape_string($value);
             $sql = "UPDATE `attributes` SET `".$attributeName ."` = '".$attributeValue."' WHERE `user_email` = '". $userEmail."'";
 
             mysqli_query($this->db, $sql);

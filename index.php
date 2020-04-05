@@ -15,13 +15,13 @@ ob_end_flush();
 	<body>
 		<div class="container-fluid">
 			<div class="row justify-content-center greetingsPanel">
-				<div class="col-lg-2">					
+				<div class="col-lg-3">					
 					<!-- logged in user information -->
 					<?php  if (isset($_SESSION['loggedin'])) : ?>
 						<h5>Welcome <strong><?php echo $_SESSION['name']; ?></strong></h5>
 					<?php endif ?>
 				</div>
-				<div class="col-lg-2 offset-lg-3">
+				<div class="col-lg-2 offset-lg-2">
 					<h2 id="profileHeader">User Profile</h2>
 				</div>
 				<div class="col-lg-1 offset-lg-4">
