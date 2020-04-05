@@ -130,6 +130,18 @@ input {
     z-index: 1;
     margin-top: 265px;
 }
+#nameHeader, #signupEmailHeader, #signupPasswordHeader, #loginEmailHeader, #loginPasswordHeader{
+    font-size: 1rem;
+    font-weight: 400;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease;
+}
+#name-img, #signup-email-img, #signup-password-img, #login-email-img, #login-password-img{
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease; 
+}
 .inactive-header{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300 !important;

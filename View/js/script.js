@@ -86,11 +86,106 @@ $(document).ready(function() {
             });
         }
     })
+
+//Login email animation
+var loginEmailInput = document.getElementById("login-email");
+var loginEmailHeader = document.getElementById("loginEmailHeader");
+var loginEmailHeaderStyle = loginEmailHeader.innerHTML;
+var loginEmailIcon = document.getElementById("login-email-img");
+loginEmailInput.addEventListener("focus", function () {
+    loginEmailHeader.style.fontSize = "10px";
+    loginEmailHeader.style.fontWeight = "700";
+    loginEmailHeader.innerHTML = loginEmailHeader.innerHTML.toUpperCase();
+    loginEmailIcon.src= "View/img/email-img-active.png";
 });
 
-function signUpNameInput(){
-    
-}
+loginEmailInput.addEventListener("blur", function () {
+    loginEmailHeader.style.fontSize = "1rem";
+    loginEmailHeader.style.fontWeight = "400";
+    loginEmailHeader.innerHTML = loginEmailHeaderStyle;
+    loginEmailIcon.src = "View/img/email-img.png";
+});
+
+//Login passsword animation
+var loginPasswordInput = document.getElementById("login-password");
+var loginPasswordHeader = document.getElementById("loginPasswordHeader");
+var loginPasswordHeaderStyle = loginPasswordHeader.innerHTML;
+var loginPasswordIcon = document.getElementById("login-password-img");
+loginPasswordInput.addEventListener("focus", function () {
+    loginPasswordHeader.style.fontSize = "10px";
+    loginPasswordHeader.style.fontWeight = "700";
+    loginPasswordHeader.innerHTML = loginPasswordHeader.innerHTML.toUpperCase();
+    loginPasswordIcon.src= "View/img/password-img-active.png";
+});
+
+loginPasswordInput.addEventListener("blur", function () {
+    loginPasswordHeader.style.fontSize = "1rem";
+    loginPasswordHeader.style.fontWeight = "400";
+    loginPasswordHeader.innerHTML = loginPasswordHeaderStyle;
+    loginPasswordIcon.src = "View/img/password-img.png";
+});
+
+//Signup name animation
+    var nameInput = document.getElementById("signup-name");
+    var nameHeader = document.getElementById("nameHeader");
+    var nameHeaderStyle = nameHeader.innerHTML;
+    var nameIcon = document.getElementById("name-img");
+    nameInput.addEventListener("focus", function () {
+        nameHeader.style.fontSize = "10px";
+        nameHeader.style.fontWeight = "700";
+        nameHeader.innerHTML = nameHeader.innerHTML.toUpperCase();
+        nameIcon.src= "View/img/name-img-active.png";
+    });
+
+    nameInput.addEventListener("blur", function () {
+        nameHeader.style.fontSize = "1rem";
+        nameHeader.style.fontWeight = "400";
+        nameHeader.innerHTML = nameHeaderStyle;
+        nameIcon.src = "View/img/name-img.png";
+    });
+
+    //Signup email animation
+    var emailInput = document.getElementById("signup-email");
+    var emailHeader = document.getElementById("signupEmailHeader");
+    var emailHeaderStyle = emailHeader.innerHTML;
+    var emailIcon = document.getElementById("signup-email-img");
+    emailInput.addEventListener("focus", function () {
+        emailHeader.style.fontSize = "10px";
+        emailHeader.style.fontWeight = "700";
+        emailHeader.innerHTML = emailHeader.innerHTML.toUpperCase();
+        emailIcon.src= "View/img/email-img-active.png";
+    });
+
+    emailInput.addEventListener("blur", function () {
+        emailHeader.style.fontSize = "1rem";
+        emailHeader.style.fontWeight = "400";
+        emailHeader.innerHTML = emailHeaderStyle;
+        emailIcon.src = "View/img/email-img.png";
+    });
+
+    //Signup passsword animation
+    var passwordInput = document.getElementById("signup-password");
+    var passwordHeader = document.getElementById("signupPasswordHeader");
+    var passwordHeaderStyle = passwordHeader.innerHTML;
+    var passwordIcon = document.getElementById("signup-password-img");
+    passwordInput.addEventListener("focus", function () {
+        passwordHeader.style.fontSize = "10px";
+        passwordHeader.style.fontWeight = "700";
+        passwordHeader.innerHTML = passwordHeader.innerHTML.toUpperCase();
+        passwordIcon.src= "View/img/password-img-active.png";
+    });
+
+    passwordInput.addEventListener("blur", function () {
+        passwordHeader.style.fontSize = "1rem";
+        passwordHeader.style.fontWeight = "400";
+        passwordHeader.innerHTML = passwordHeaderStyle;
+        passwordIcon.src = "View/img/password-img.png";
+    });
+});
+
+
+
+
 function fadeIn(el){
     el.classList.add('show');
     el.classList.remove('hide');  
