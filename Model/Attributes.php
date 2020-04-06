@@ -14,10 +14,12 @@ class Attributes{
     public function requestAttributes($userEmail){
         new SaveAttributes();
         $this->dbConnection();
+        //Save names of Attributes(DB column titles)
         $attributes_query = $this->db->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'magebit' AND TABLE_NAME = 'attributes'");
         while($attributesFromDB = $attributes_query->fetch_assoc()){
             $attributes[] = $attributesFromDB;
         }
+        //Place in input what user already has in DB
         $user_check_query = $this->db->prepare("SELECT * FROM attributes WHERE user_email = ?");
         $user_check_query->bind_param("s", $userEmail);
         $user_check_query->execute();

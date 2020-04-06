@@ -42,7 +42,7 @@ class SaveAttributes{
         array_shift($attributes);
         array_shift($attributes);
 
-        //Check if enries already exist for this user
+        //Check if entries already exist for this user
         if(!$entriesExist){
             $attributeName = "";
             $attributeValue = "";
