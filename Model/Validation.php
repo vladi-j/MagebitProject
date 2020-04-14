@@ -32,14 +32,51 @@ class Validation{
         self::$signUpPassword = mysqli_real_escape_string($this->db, self::$signUpPassword);
     }
 
+    //Register user
+    public function registering(){
+        $password = md5(self::$signUpPassword);//encrypt the password before saving in the database
+
+        $query = $this->db->prepare("INSERT INTO users (name, email, password) VALUES(?, ?, ?)");
+        $query->bind_param("sss", self::$signUpName, self::$signUpEmail, $password);
+        $query->execute();
+        $_SESSION['name'] = self::$signUpName;
+        $_SESSION['email'] = self::$signUpEmail;
+        $_SESSION['loggedin'] = true;
+        header('location: index.php');
+        $thread = $this->db->thread_id;
+        $this->db->kill($thread);
+        $this->db->close();
+    }
+
+    //Attempt to log in
+    public function tryLogIn(){
+        if(count(Validation::$loginErrors) === 0){
+            $password = md5(self::$loginPassword);
+            $query = $this->db->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+            $query->bind_param("ss", self::$loginEmail, $password);
+            $query->execute();
+            $user = mysqli_fetch_assoc( $query->get_result());
+            if($user){
+                $_SESSION['name'] = $user['name'];
+                $_SESSION['email'] = self::$loginEmail;
+                $_SESSION['loggedin'] = true;
+                $_SESSION['success'] = "You are now logged in";
+                header('location: index.php');
+            }else{
+                Validation::addError("login", "Incorrect credentials!");
+            }
+        }
+        $thread = $this->db->thread_id;
+        $this->db->kill($thread);
+        $this->db->close();
+    }
+
     public function register(){
-        $registration = new Register();
-        $registration->registering($this->db, self::$signUpName, self::$signUpEmail,self::$signUpPassword);
+        $this->registering();
     }
 
     public function login(){
-        $loggingIn = new Login();
-        $loggingIn->tryLogIn($this->db, self::$loginEmail, self::$loginPassword);
+        $this->tryLogIn();
     }
 
     public function checkIfAvailable(){
@@ -109,11 +146,23 @@ class Validation{
         }
     }
 
+    //Display login and signUp errors
     public static function errors($type){
         if($type === "signUp"){
-            return self::$signUpErrors;
+            $errors = self::$signUpErrors;
         } else {
-            return self::$loginErrors;
+            $errors = self::$loginErrors;
         }
+        if (count($errors) > 0) :?>
+            <div class="row justify-content-center">
+                <div class="error">
+                    <?php foreach ($errors as $error) : ?>
+                    <p><?php echo $error ?> </p>
+                    <?php endforeach ?>
+                </div>
+            </div>
+        <?php  endif;
     }
 };
+
+?>

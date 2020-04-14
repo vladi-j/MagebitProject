@@ -71,7 +71,7 @@ new Validation();
                         </div>
                         <form id="login-form" method="post">
                             <!--Display errors -->
-                            <?php include('Controller/loginErrors.php'); ?>
+                            <?php Validation::errors("login"); ?>
                             <div class="row justify-content-center">
                                 <div class="error justify-content-center">
                                     <p id="emailLoginError">Email is required. &nbsp</p>
@@ -129,7 +129,7 @@ new Validation();
                         </div>
                         <form id="signup-form" method="post" action="">
                             <!--Display errors-->
-                            <?php include('Controller/signUpErrors.php'); ?>
+                            <?php Validation::errors("signUp"); ?>
                             <div class="row justify-content-center">
                                 <div class="error justify-content-center">
                                     <p id="nameError">Name is required. &nbsp</p>
