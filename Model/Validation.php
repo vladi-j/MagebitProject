@@ -1,13 +1,11 @@
 <?php
 require_once("DBConfig.php");
-class Validation{
-    public $db;
+class Validation extends DBConnection{
     public static  $signUpName = "",
             $signUpEmail    = "",
             $signUpPassword = "",
             $loginEmail = "",
             $loginPassword = "",
-            $userID = "",
             $signUpErrors = array(),
             $loginErrors = array();
 
@@ -17,35 +15,28 @@ class Validation{
         };
     }
 
-    public function DBConnection(){
-        $this->db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
- 
-         if(mysqli_connect_errno()) {
-             exit;
-         }
-     }
-
     public function sanitize(){
-        self::DBConnection();
+        $this->Connect();
         self::$signUpName = mysqli_real_escape_string($this->db, self::$signUpName);
         self::$signUpEmail = mysqli_real_escape_string($this->db, self::$signUpEmail);
         self::$signUpPassword = mysqli_real_escape_string($this->db, self::$signUpPassword);
     }
 
+    public function prepareSession($name, $email){
+        $_SESSION['name'] = $name;
+        $_SESSION['email'] = $email;
+        $_SESSION['loggedin'] = true;
+    }
+
     //Register user
     public function registering(){
         $password = md5(self::$signUpPassword);//encrypt the password before saving in the database
-
         $query = $this->db->prepare("INSERT INTO users (name, email, password) VALUES(?, ?, ?)");
         $query->bind_param("sss", self::$signUpName, self::$signUpEmail, $password);
         $query->execute();
-        $_SESSION['name'] = self::$signUpName;
-        $_SESSION['email'] = self::$signUpEmail;
-        $_SESSION['loggedin'] = true;
+        $this->prepareSession(self::$signUpName, self::$signUpEmail);
         header('location: index.php');
-        $thread = $this->db->thread_id;
-        $this->db->kill($thread);
-        $this->db->close();
+        $this->closeConnection();
     }
 
     //Attempt to log in
@@ -57,27 +48,15 @@ class Validation{
             $query->execute();
             $user = mysqli_fetch_assoc( $query->get_result());
             if($user){
-                $_SESSION['name'] = $user['name'];
-                $_SESSION['email'] = self::$loginEmail;
-                $_SESSION['loggedin'] = true;
-                $_SESSION['success'] = "You are now logged in";
+                $this->prepareSession($user['name'], self::$loginEmail);
                 header('location: index.php');
             }else{
                 Validation::addError("login", "Incorrect credentials!");
             }
         }
-        $thread = $this->db->thread_id;
-        $this->db->kill($thread);
-        $this->db->close();
+        $this->closeConnection();
     }
 
-    public function register(){
-        $this->registering();
-    }
-
-    public function login(){
-        $this->tryLogIn();
-    }
 
     public function checkIfAvailable(){
         // first check the database to make sure 
@@ -101,7 +80,7 @@ class Validation{
                 };
             }
         } else if(count(self::$signUpErrors) === 0){
-            self::register();
+            $this->registering();
             return true;
         }
     }
@@ -124,7 +103,7 @@ class Validation{
         self::$loginPassword = $_POST['login-password'];
         
         self::sanitize();
-        self::login();
+        $this->tryLogIn();
     }
 
     public function validateForm(){

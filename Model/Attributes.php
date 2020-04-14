@@ -1,19 +1,9 @@
 <?php
 require_once("DBConfig.php");
-class Attributes{
-    public $db;
-
-    public function dbConnection(){
-        $this->db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-
-        if(mysqli_connect_errno()) {
-            exit;
-        }
-    }
-    
+class Attributes extends DBConnection{
     public function requestAttributes($userEmail){
         new SaveAttributes();
-        $this->dbConnection();
+        $this->Connect();
         //Save names of Attributes(DB column titles)
         $attributes_query = $this->db->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'magebit' AND TABLE_NAME = 'attributes'");
         while($attributesFromDB = $attributes_query->fetch_assoc()){
@@ -40,9 +30,7 @@ class Attributes{
             </div>
         </form>
         <?php
-        $thread = $this->db->thread_id;
-        $this->db->kill($thread);
-        $this->db->close();
+        $this->closeConnection();
     }
 }
 ?>

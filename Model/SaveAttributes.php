@@ -1,26 +1,17 @@
 <?php
 require_once("DBConfig.php");
 
-class SaveAttributes{
-    public $db;
+class SaveAttributes extends DBConnection{
     function __construct(){
         if(!empty($_POST)){
             self::saveAttributes();
         };
     }
 
-    public function dbConnection(){
-        $this->db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-
-        if(mysqli_connect_errno()) {
-            exit;
-        }
-    }
-
     public function saveAttributes(){
         //Check if user already has entries in DB table
         $entriesExist = false;
-        $this->dbConnection();
+        $this->Connect();
         $entry_query = "SELECT * FROM `attributes` WHERE `user_email` ='".$_SESSION['email']."'";
         $entry_query_result = mysqli_query($this->db, $entry_query);
         if($entry_query_result){
@@ -61,8 +52,6 @@ class SaveAttributes{
             mysqli_query($this->db, $sql);
         }
 
-
-
         foreach($attributeArray as $key=>$value){
             $attributeName = $attributes[$key]['COLUMN_NAME'];
             $attributeValue = $this->db->real_escape_string($value);
@@ -71,9 +60,6 @@ class SaveAttributes{
             mysqli_query($this->db, $sql);
         }
 
-        
-        $thread = $this->db->thread_id;
-        $this->db->kill($thread);
-        $this->db->close();
+        $this->closeConnection();
     }    
 }

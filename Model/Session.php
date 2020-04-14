@@ -11,8 +11,7 @@ class Session{
     }
 
     public function logIn(){
-        $_SESSION['msg'] = "You must log in first";
-        header('location: auth.php');
+        header("location: auth.php");
     }
 
     public function logOut(){
@@ -20,7 +19,6 @@ class Session{
         unset($_SESSION['loggedin']);
         unset($_SESSION['email']);
         unset($_SESSION['name']);
-        unset($_SESSION['success']);
         header("location: auth.php");
     }
 }
