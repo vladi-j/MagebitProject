@@ -1,16 +1,10 @@
-<?php
-ob_start();
-require_once('core/init.php');
-ob_end_flush();
-new Validation();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentication</title>
-    <link rel="stylesheet" href="View/css/style.css">
+    <link rel="stylesheet" type="text/css" href="View/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="View/img/logo.jpg"/>
@@ -69,7 +63,7 @@ new Validation();
                         <div class="offset-lg-2 pl-2">                    
                             <hr class="line-divisor">
                         </div>
-                        <form id="login-form" method="post">
+                        <form id="login-form" action="Validate" method="post">
                             <!--Display errors -->
                             <?php Validation::errors("login"); ?>
                             <div class="row justify-content-center">
@@ -127,7 +121,7 @@ new Validation();
                         <div class="offset-lg-2 pl-2">                    
                             <hr class="line-divisor">
                         </div>
-                        <form id="signup-form" method="post" action="">
+                        <form id="signup-form" method="post" action="Validate">
                             <!--Display errors-->
                             <?php Validation::errors("signUp"); ?>
                             <div class="row justify-content-center">
@@ -214,8 +208,8 @@ new Validation();
                         <button type="submit" class="btn btn-lg inactive-button inactive-login-button" onclick="loginClick()">LOGIN</button>
                     </div>
             </div>
-            <div id="upper-fold" class="position-absolute col-lg-1 offset-lg-5"></div> <!--Change to col-lg-2 ml-lg-3-->
-            <div id="lower-fold" class="position-absolute col-lg-1 offset-lg-5"></div> <!--Change to col-lg-2 ml-lg-3-->
+            <div id="upper-fold" class="position-absolute col-lg-1 offset-lg-5"></div>
+            <div id="lower-fold" class="position-absolute col-lg-1 offset-lg-5"></div>
         </div>
     </div>   
     <footer class="page-footer">

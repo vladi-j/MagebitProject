@@ -1,6 +1,6 @@
 <?php
 require_once("DBConfig.php");
-class Validation{
+class Validation extends Controller{
     public static  $signUpName = "",
             $signUpEmail    = "",
             $signUpPassword = "",
@@ -13,7 +13,11 @@ class Validation{
     function __construct(){
         if(!empty($_POST)){
             self::validateForm();
-        };
+        }else if(isset($_SESSION['loggedin'])){
+            Validation::CreateView('Profile');
+        }else{
+            Auth::CreateView('Auth');
+        }
     }
 
     public function sanitize(){
@@ -37,13 +41,13 @@ class Validation{
         $query->bind_param("sss", self::$signUpName, self::$signUpEmail, $password);
         $query->execute();
         $this->prepareSession(self::$signUpName, self::$signUpEmail);
-        header('location: index.php');
+        Validation::CreateView('Profile');
         self::$connection->closeConnection();
     }
 
     //Attempt to log in
     public function tryLogIn(){
-        if(count(Validation::$loginErrors) === 0){
+        if(count(self::$loginErrors) === 0){
             $password = md5(self::$loginPassword);
             $query = self::$connection->db->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
             $query->bind_param("ss", self::$loginEmail, $password);
@@ -51,9 +55,11 @@ class Validation{
             $user = mysqli_fetch_assoc( $query->get_result());
             if($user){
                 $this->prepareSession($user['name'], self::$loginEmail);
-                header('location: index.php');
+                $_POST = array();
+                Auth::CreateView('Profile');
             }else{
-                Validation::addError("login", "Incorrect credentials!");
+                self::addError("login", "Incorrect credentials!");
+                Auth::CreateView('Auth');
             }
         }
         self::$connection->closeConnection();
@@ -70,15 +76,18 @@ class Validation{
         $user_check_query->close();
         $nameError = false;
         $emailError = false;
+        $_POST = array();
         if (isset($users)) { // if user exists
             foreach($users as $key=>$value) {
                 if (strtolower($users['name']) === strtolower(self::$signUpName) && !$nameError) {
                     self::addError("signUp", "Name already exists.");
                     $nameError = true;
+                    Auth::CreateView('Auth');
                 };
                 if ($users['email'] === self::$signUpEmail && !$emailError) {
                     self::addError("signUp", "Email already exists.");
                     $emailError = true;
+                    Auth::CreateView('Auth');
                 };
             }
         } else if(count(self::$signUpErrors) === 0){

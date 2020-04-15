@@ -10,7 +10,7 @@ class Attributes{
         };
     }
 
-    public function attributeNames(){
+    public static function attributeNames(){
         
         self::$connection = new DBConnection;
         self::$connection->Connect();
@@ -32,7 +32,7 @@ class Attributes{
         $user_check_query->execute();
         $attribute = $user_check_query->get_result()->fetch_assoc();
         ?>
-        <form id="attribute-form" action="" method="post">
+        <form id="attribute-form" action="saveAttributes" method="post">
             <?php
             for ($i = 2; $i < count(self::$attributes); $i++) { 
                 $attributeName = self::$attributes[$i]['COLUMN_NAME']; ?>   
@@ -51,7 +51,7 @@ class Attributes{
         self::$connection->closeConnection();
     }
 
-    public function saveAttributes(){
+    public static function saveAttributes(){
         //Check if user already has entries in DB table
         self::attributeNames();
         $entriesExist = false;
