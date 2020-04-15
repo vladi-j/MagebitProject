@@ -1,5 +1,5 @@
 <?php
-abstract class DBConnection{
+class DBConnection{
     public $db;
     public function Connect(){
         $this->db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);

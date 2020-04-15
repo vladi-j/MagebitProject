@@ -1,11 +1,12 @@
 <?php
 require_once("DBConfig.php");
-class Validation extends DBConnection{
+class Validation{
     public static  $signUpName = "",
             $signUpEmail    = "",
             $signUpPassword = "",
             $loginEmail = "",
             $loginPassword = "",
+            $connection,
             $signUpErrors = array(),
             $loginErrors = array();
 
@@ -16,10 +17,11 @@ class Validation extends DBConnection{
     }
 
     public function sanitize(){
-        $this->Connect();
-        self::$signUpName = mysqli_real_escape_string($this->db, self::$signUpName);
-        self::$signUpEmail = mysqli_real_escape_string($this->db, self::$signUpEmail);
-        self::$signUpPassword = mysqli_real_escape_string($this->db, self::$signUpPassword);
+        self::$connection = new DBConnection;
+        self::$connection->Connect();
+        self::$signUpName = mysqli_real_escape_string(self::$connection->db, self::$signUpName);
+        self::$signUpEmail = mysqli_real_escape_string(self::$connection->db, self::$signUpEmail);
+        self::$signUpPassword = mysqli_real_escape_string(self::$connection->db, self::$signUpPassword);
     }
 
     public function prepareSession($name, $email){
@@ -31,19 +33,19 @@ class Validation extends DBConnection{
     //Register user
     public function registering(){
         $password = md5(self::$signUpPassword);//encrypt the password before saving in the database
-        $query = $this->db->prepare("INSERT INTO users (name, email, password) VALUES(?, ?, ?)");
+        $query = self::$connection->db->prepare("INSERT INTO users (name, email, password) VALUES(?, ?, ?)");
         $query->bind_param("sss", self::$signUpName, self::$signUpEmail, $password);
         $query->execute();
         $this->prepareSession(self::$signUpName, self::$signUpEmail);
         header('location: index.php');
-        $this->closeConnection();
+        self::$connection->closeConnection();
     }
 
     //Attempt to log in
     public function tryLogIn(){
         if(count(Validation::$loginErrors) === 0){
             $password = md5(self::$loginPassword);
-            $query = $this->db->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+            $query = self::$connection->db->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
             $query->bind_param("ss", self::$loginEmail, $password);
             $query->execute();
             $user = mysqli_fetch_assoc( $query->get_result());
@@ -54,14 +56,14 @@ class Validation extends DBConnection{
                 Validation::addError("login", "Incorrect credentials!");
             }
         }
-        $this->closeConnection();
+        self::$connection->closeConnection();
     }
 
 
     public function checkIfAvailable(){
         // first check the database to make sure 
         // a user does not already exist with the same username and/or email
-        $user_check_query = $this->db->prepare("SELECT * FROM users WHERE name = ? OR email = ?");
+        $user_check_query = self::$connection->db->prepare("SELECT * FROM users WHERE name = ? OR email = ?");
         $user_check_query->bind_param("ss", self::$signUpName, self::$signUpEmail);
         $user_check_query->execute();
         $users = $user_check_query->get_result()->fetch_assoc();

@@ -1,16 +1,18 @@
 <?php
 require_once("DBConfig.php");
-class Attributes extends DBConnection{
+class Attributes{
+    public static $connection;
     public function requestAttributes($userEmail){
         new SaveAttributes();
-        $this->Connect();
+        self::$connection = new DBConnection;
+        self::$connection->Connect();
         //Save names of Attributes(DB column titles)
-        $attributes_query = $this->db->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'magebit' AND TABLE_NAME = 'attributes'");
+        $attributes_query = self::$connection->db->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'magebit' AND TABLE_NAME = 'attributes'");
         while($attributesFromDB = $attributes_query->fetch_assoc()){
             $attributes[] = $attributesFromDB;
         }
         //Place in input what user already has in DB
-        $user_check_query = $this->db->prepare("SELECT * FROM attributes WHERE user_email = ?");
+        $user_check_query = self::$connection->db->prepare("SELECT * FROM attributes WHERE user_email = ?");
         $user_check_query->bind_param("s", $userEmail);
         $user_check_query->execute();
         $attribute = $user_check_query->get_result()->fetch_assoc();
@@ -30,7 +32,7 @@ class Attributes extends DBConnection{
             </div>
         </form>
         <?php
-        $this->closeConnection();
+        self::$connection->closeConnection();
     }
 }
 ?>
