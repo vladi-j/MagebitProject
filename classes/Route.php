@@ -7,6 +7,7 @@ class Route {
             $function->__invoke();
         };
 
+        //If route doesn't exist redirect to authentication page
         if(!in_array($_GET['url'],self::$validRoutes)){
             Auth::CreateView('Auth');
         }

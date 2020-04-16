@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="View/css/style.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap" rel="stylesheet">
-		<link rel="shortcut icon" type="image/png" href="View/img/logo.jpg"/>
+		<link rel="shortcut icon" type="image/png" href="View/img/favicon.ico"/>
 	</head>
 	<body>
 		<div class="container-fluid">

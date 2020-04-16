@@ -10,6 +10,8 @@ class Validation extends Controller{
             $signUpErrors = array(),
             $loginErrors = array();
 
+
+    //Check if user is already logged in, check session        
     function __construct(){
         if(!empty($_POST)){
             self::validateForm();
@@ -36,7 +38,7 @@ class Validation extends Controller{
 
     //Register user
     public function registering(){
-        $password = md5(self::$signUpPassword);//encrypt the password before saving in the database
+        $password = md5(self::$signUpPassword);
         $query = self::$connection->db->prepare("INSERT INTO users (name, email, password) VALUES(?, ?, ?)");
         $query->bind_param("sss", self::$signUpName, self::$signUpEmail, $password);
         $query->execute();
@@ -53,6 +55,7 @@ class Validation extends Controller{
             $query->bind_param("ss", self::$loginEmail, $password);
             $query->execute();
             $user = mysqli_fetch_assoc( $query->get_result());
+            //Send to Profile page if correct credentials; otherwise, stay on authentication page
             if($user){
                 $this->prepareSession($user['name'], self::$loginEmail);
                 $_POST = array();
@@ -65,10 +68,11 @@ class Validation extends Controller{
         self::$connection->closeConnection();
     }
 
+    /* Check the database to make sure a user does not already exist with the same username and/or email.
+        Add errors if exists.
+    */
 
     public function checkIfAvailable(){
-        // first check the database to make sure 
-        // a user does not already exist with the same username and/or email
         $user_check_query = self::$connection->db->prepare("SELECT * FROM users WHERE name = ? OR email = ?");
         $user_check_query->bind_param("ss", self::$signUpName, self::$signUpEmail);
         $user_check_query->execute();
@@ -77,7 +81,7 @@ class Validation extends Controller{
         $nameError = false;
         $emailError = false;
         $_POST = array();
-        if (isset($users)) { // if user exists
+        if (isset($users)) {
             foreach($users as $key=>$value) {
                 if (strtolower($users['name']) === strtolower(self::$signUpName) && !$nameError) {
                     self::addError("signUp", "Name already exists.");
@@ -96,6 +100,7 @@ class Validation extends Controller{
         }
     }
 
+    //Process data from registration form
     public function registrationForm(){
         self::$signUpName = $_POST['signup-name'];
         self::$signUpEmail = $_POST['signup-email'];
@@ -109,6 +114,7 @@ class Validation extends Controller{
         }
     }
 
+     //Process data from login form
     public function loginForm(){
         self::$loginEmail = $_POST['login-email'];
         self::$loginPassword = $_POST['login-password'];
@@ -116,9 +122,10 @@ class Validation extends Controller{
         self::sanitize();
         $this->tryLogIn();
     }
-
+    
+    //Receive all input values from the form and add errors
     public function validateForm(){
-        // receive all input values from the form and add errors
+
         if (isset($_POST['sign-up'])) {
             self::registrationForm();
         };

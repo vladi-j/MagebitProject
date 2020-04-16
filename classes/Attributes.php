@@ -10,12 +10,12 @@ class Attributes{
         };
     }
 
+    //Save names of Attributes(DB column titles)
     public static function attributeNames(){
         
         self::$connection = new DBConnection;
         self::$connection->Connect();
-
-        //Save names of Attributes(DB column titles)
+        
         $attributes_query = self::$connection->db->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'magebit' AND TABLE_NAME = 'attributes'");
         
         self::$attributes = array();
@@ -24,6 +24,7 @@ class Attributes{
         }
     }
 
+    //Make attribute form in user profile
     public function requestAttributes($userEmail){
         self::attributeNames();
         //Place in input what user already has in DB

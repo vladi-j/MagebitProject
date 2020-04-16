@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="View/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="View/img/logo.jpg"/>
+    <link rel="shortcut icon" type="image/png" href="View/img/favicon.ico"/>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -48,16 +48,16 @@
                     </div>
                 </div>  
             </div>  
-            <div id="active-login-section" class="container position-absolute col-lg-4 offset-lg-6"><!--Change to col-lg-4 offset-lg-2-->
+            <div id="active-login-section" class="container position-absolute col-lg-4 offset-lg-6">
                 <div id="active-box" class="ml-lg-n3">
-                    <div id="login-box" class="ml-lg-n2 position-absolute col-lg-12"> <!--Change to ml-lg-2-->
+                    <div id="login-box" class="ml-lg-n2 position-absolute col-lg-12">
                         <!-- Active LOGIN section -->
                         <div class="row justify-content-center">
                             <div class="col-lg-3">
                                 <h2 class="login-header">Login</h2>
                             </div> 
                             <div class="col-lg-2 offset-lg-3">
-                                <img class="float-right" src="View/img/logo.jpg" alt="MAGEBIT">
+                                <img class="float-right" src="View/img/logo.png" alt="MAGEBIT">
                             </div> 
                         </div>
                         <div class="offset-lg-2 pl-2">                    
@@ -115,7 +115,7 @@
                                 <h2 class="signup-header">Sign Up</h2>
                             </div> 
                             <div class="col-lg-2 offset-lg-2">
-                                <img class="float-right" src="View/img/logo.jpg" alt="MAGEBIT">
+                                <img class="float-right" src="View/img/logo.png" alt="MAGEBIT">
                             </div> 
                         </div>
                         <div class="offset-lg-2 pl-2">                    
